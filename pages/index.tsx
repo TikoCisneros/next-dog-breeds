@@ -1,6 +1,12 @@
 import type { NextPage } from 'next';
+import DogList from '../components/DogList';
+
 const Home: NextPage = () => {
-  return <p>Hello</p>;
+  return (
+    <>
+      <DogList />
+    </>
+  );
 };
 
 export default Home;
