@@ -1,4 +1,4 @@
-# Next.js + Tailwind CSS Example
+# Dog Breeds
 
 This project solve the [HelloExtended ReactJS challenge](https://github.com/helloextend/react-challenge), using NextJS, Tailwind CSS and Typescript.
 
