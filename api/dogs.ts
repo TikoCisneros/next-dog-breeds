@@ -1,7 +1,7 @@
 import { ApiResponse } from './../types/api.d';
 import client from './http';
 
-const DOGS_QUANTITY = 8;
+const DOGS_QUANTITY = 10;
 
 export const getDogs = (bread: string) => (bread.trim().length > 0 ? getDogsByBreed(bread) : getRandomDogs());
 

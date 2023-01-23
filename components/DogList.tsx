@@ -1,6 +1,7 @@
-import Image from 'next/image';
 import { useQuery } from 'react-query';
+
 import { getDogs } from '../api/dogs';
+import DogCard from './DogCard';
 
 type DogListProps = {
   dogBreed?: string;
@@ -27,7 +28,7 @@ const DogList = ({ dogBreed = '' }: DogListProps) => {
   return (
     <div className="flex flex-wrap justify-center gap-5">
       {message.map((url, index) => (
-        <Image key={`dog-${index}`} src={url} width={300} height={200} alt={`dog-img-${index}`} />
+        <DogCard key={`dog${dogBreed}-${index}`} imageAlt={`dog-img-${index}`} imageUrl={url} />
       ))}
     </div>
   );
