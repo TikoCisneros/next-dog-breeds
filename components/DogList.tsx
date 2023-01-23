@@ -1,19 +1,21 @@
 import { useQuery } from 'react-query';
 
 import { getDogs } from '../api/dogs';
+import { useDogs } from '../contexts/dogs';
 import DogCard from './DogCard';
 
-type DogListProps = {
-  dogBreed?: string;
-};
+const DogList = () => {
+  const { dogBreed } = useDogs();
 
-const DogList = ({ dogBreed = '' }: DogListProps) => {
   const {
     data: response,
     isLoading,
     isError,
     error,
-  } = useQuery(['random-dogs', dogBreed], async () => await getDogs(dogBreed), { staleTime: Infinity, enabled: true });
+  } = useQuery(['random-dogs', dogBreed], async () => await getDogs(dogBreed!), {
+    staleTime: Infinity,
+    enabled: true,
+  });
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -23,7 +25,7 @@ const DogList = ({ dogBreed = '' }: DogListProps) => {
     data: { message },
   } = response!;
 
-  if (message.length === 0) return <h1>Any</h1>;
+  if (message.length === 0) return <h1>No results! try with a correct breed</h1>;
 
   return (
     <div className="flex flex-wrap justify-center gap-5">
