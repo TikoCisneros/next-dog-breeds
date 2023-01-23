@@ -12,7 +12,7 @@ const DogList = ({ dogBreed = '' }: DogListProps) => {
     isLoading,
     isError,
     error,
-  } = useQuery(['random-dogs', dogBreed], async () => await getDogs(dogBreed), { enabled: true });
+  } = useQuery(['random-dogs', dogBreed], async () => await getDogs(dogBreed), { cacheTime: Infinity, enabled: true });
 
   if (isLoading) return <h1>Loading...</h1>;
 
