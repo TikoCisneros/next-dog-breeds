@@ -12,7 +12,7 @@ const DogList = () => {
     isLoading,
     isError,
     error,
-  } = useQuery(['random-dogs', dogBreed], async () => await getDogs(dogBreed!), {
+  } = useQuery(['random-dogs', dogBreed], async () => await getDogs(dogBreed), {
     staleTime: Infinity,
     enabled: true,
   });

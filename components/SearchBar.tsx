@@ -9,7 +9,7 @@ const SearchBar = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setDogBreed?.(query);
+    setDogBreed(query);
   };
 
   return (

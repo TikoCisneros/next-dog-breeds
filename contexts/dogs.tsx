@@ -8,7 +8,15 @@ interface DogsContextProps {
   removeDogFavorite: (dogUrl: string) => void;
 }
 
-const DogsContext = createContext<Partial<DogsContextProps>>({});
+const INITIAL_CONTEXT_DATA = {
+  dogBreed: '',
+  setDogBreed: () => {},
+  dogFavorites: [],
+  addDogFavorite: () => {},
+  removeDogFavorite: () => {},
+};
+
+const DogsContext = createContext<DogsContextProps>(INITIAL_CONTEXT_DATA);
 
 export const DogsContextProvider = ({ children }: { children: ReactNode }) => {
   const [breed, setBreed] = useState<string>('');
@@ -29,7 +37,7 @@ export const DogsContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useDogs = () => {
-  const context = useContext(DogsContext);
+  const context = useContext<DogsContextProps>(DogsContext);
   if (context === undefined) {
     throw new Error('useDogs must be used within a DogsContextProvider');
   }
