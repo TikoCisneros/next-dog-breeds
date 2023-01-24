@@ -5,7 +5,7 @@ import { useDogs } from '../contexts/dogs';
 import DogCard from './DogCard';
 
 const DogList = () => {
-  const { dogBreed } = useDogs();
+  const { dogBreed, dogFavorites, addDogFavorite } = useDogs();
 
   const {
     data: response,
@@ -30,7 +30,13 @@ const DogList = () => {
   return (
     <div className="flex flex-wrap justify-center gap-5">
       {message.map((url, index) => (
-        <DogCard key={`dog${dogBreed}-${index}`} imageAlt={`dog-img-${index}`} imageUrl={url} />
+        <DogCard
+          key={`dog${dogBreed}-${index}`}
+          imageAlt={`dog-img-${index}`}
+          imageUrl={url}
+          onClick={addDogFavorite}
+          isFavorite={dogFavorites.includes(url)}
+        />
       ))}
     </div>
   );

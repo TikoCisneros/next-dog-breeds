@@ -14,7 +14,7 @@ export default function MainLayout({ children }: { children: ReactElement }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main>{children}</main>
+      <main className="my-4">{children}</main>
     </div>
   );
 }
