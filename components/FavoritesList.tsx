@@ -7,7 +7,7 @@ const FavoritesList = () => {
   return (
     <section>
       <h1 className="text-2xl font-bold mb-2">Favorites</h1>
-      <div className="flex flex-nowrap gap-2">
+      <div className="flex flex-nowrap gap-2 overflow-x-auto">
         {dogFavorites.map((url, index) => (
           <DogCard
             key={`dog-fav-${index}`}
