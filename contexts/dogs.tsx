@@ -1,4 +1,6 @@
-import { createContext, ReactNode, useContext, useReducer, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { cacheUtil } from '../utils/cache';
+//TODO: Apply https://usehooks.com/useLocalStorage/ or https://upmostly.com/next-js/using-localstorage-in-next-js instead util 
 
 interface DogsContextProps {
   dogBreed: string;
@@ -16,16 +18,30 @@ const INITIAL_CONTEXT_DATA = {
   removeDogFavorite: () => {},
 };
 
+const BREED_FAV = 'breed-fav';
+
 const DogsContext = createContext<DogsContextProps>(INITIAL_CONTEXT_DATA);
 
 export const DogsContextProvider = ({ children }: { children: ReactNode }) => {
   const [breed, setBreed] = useState<string>('');
   const [favorites, setFavorites] = useState<string[]>([]);
 
+  const didMount = useRef(false);
+
   const setDogBreed = (breed: string) => setBreed(breed.trim());
   const addDogFavorite = (dogUrl: string) => setFavorites((prevFavorites) => [...prevFavorites, dogUrl]);
   const removeDogFavorite = (dogUrl: string) =>
     setFavorites((prevFavorites) => prevFavorites.filter((item) => item.localeCompare(dogUrl) !== 0));
+
+  useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      setFavorites(cacheUtil.get(BREED_FAV, []));
+      return;
+    }
+
+    cacheUtil.set(BREED_FAV, favorites);
+  }, [favorites]);
 
   return (
     <DogsContext.Provider
