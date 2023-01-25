@@ -14,7 +14,7 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="relative mx-0 sm:mx-[8.1rem] my-5">
+      <div className="relative my-5">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             aria-hidden="true"
